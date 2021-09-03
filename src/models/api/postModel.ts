@@ -15,4 +15,6 @@ export interface PostModel {
     postedBy: PostUserModel;
     likedBy: PostUserModel[];
     dislikedBy: PostUserModel[];
+    isLikedByCurrentUser: boolean;
+    isDislikedByCurrentUser: boolean;
 }
