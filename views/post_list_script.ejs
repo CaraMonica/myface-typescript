@@ -1,33 +1,52 @@
 <script type="text/javascript">
-    const updateInteractions = (postId, interaction) =>
-      fetch(`${postId}/${interaction}`, { method: "POST" })
-        .then(response => response.json())
-        .then(json => {
-          document.getElementById(`${postId}-numLikes`).innerHTML = json.numLikes;
-          document.getElementById(`${postId}-numDislikes`).innerHTML = json.numDislikes;
-        });
+  const updateInteractions = (postId, interaction) =>
+    fetch(`${postId}/${interaction}`, { method: "POST" })
+      .then(response => response.json())
+      .then(json => {
+        document.getElementById(`${postId}-numLikes`).innerHTML = json.numLikes;
+        document.getElementById(`${postId}-numDislikes`).innerHTML = json.numDislikes;
+      });
 
-    const onLikeClick = postId => {
-      const likeButton = document.getElementById(`${postId}-like-button`);
-      if (likeButton.classList.contains("liked")) {
-        updateInteractions(postId, "unlike");
-      } else {
-        updateInteractions(postId, "like");
-        document.getElementById(`${postId}-dislike-button`).classList.remove("disliked");
-      }
+  const onLikeClick = postId => {
+    const likeButton = document.getElementById(`${postId}-like-button`);
+    if (likeButton.classList.contains("liked")) {
+      updateInteractions(postId, "unlike");
+    } else {
+      updateInteractions(postId, "like");
+      document.getElementById(`${postId}-dislike-button`).classList.remove("disliked");
+    }
 
-      likeButton.classList.toggle("liked");
-    };
+    likeButton.classList.toggle("liked");
+  };
 
-    const onDislikeClick = postId => {
-      const dislikeButton = document.getElementById(`${postId}-dislike-button`);
-      if (dislikeButton.classList.contains("disliked")) {
-        updateInteractions(postId, "undislike");
-      } else {
-        updateInteractions(postId, "dislike");
-        document.getElementById(`${postId}-like-button`).classList.remove("liked");
-      }
+  const onDislikeClick = postId => {
+    const dislikeButton = document.getElementById(`${postId}-dislike-button`);
+    if (dislikeButton.classList.contains("disliked")) {
+      updateInteractions(postId, "undislike");
+    } else {
+      updateInteractions(postId, "dislike");
+      document.getElementById(`${postId}-like-button`).classList.remove("liked");
+    }
 
-      dislikeButton.classList.toggle("disliked");
-    };
-  </script>
+    dislikeButton.classList.toggle("disliked");
+  };
+
+  window.onscroll = function () {
+    myFunction();
+  };
+
+  // Get the navbar
+  var navbar = document.getElementById("navbar");
+
+  // Get the offset position of the navbar
+  var sticky = navbar.offsetTop;
+
+  // Add the sticky class to the navbar when you reach its scroll position. Remove "sticky" when you leave the scroll position
+  function myFunction() {
+    if (window.pageYOffset >= sticky) {
+      navbar.classList.add("sticky");
+    } else {
+      navbar.classList.remove("sticky");
+    }
+  }
+</script>

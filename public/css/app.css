@@ -27,7 +27,15 @@ ul {
 }
 
 .post-item {
+  display: grid;
+  grid-template-rows: 3fr 1fr;
   width: 30vw;
+  height: 45vw;
+  position: relative;
+  background-color: white;
+  margin: 20px 0px;
+  border-radius: 2px;
+  box-shadow: 0px 5px 9px 0px rgb(80, 80, 90);
 }
 
 .flex-container {
@@ -40,9 +48,18 @@ ul {
 .post-image {
   vertical-align: middle;
   border-radius: 5px;
-  width: 100%;
+  max-width: 95%;
   grid-column: 2;
   grid-row: 1 / span 3;
+  margin: 5 0;
+}
+
+.img-container {
+  height: 28vw;
+}
+
+.content-container {
+  font-size: 1.5vw;
 }
 
 .post-info {
@@ -97,31 +114,45 @@ ul {
   color: rgb(231, 87, 31);
 }
 
-.dislike.disliked:hover,
-.like.liked:hover {
-  color: grey;
-}
-
 @media screen and (max-width: 800px) {
   .post-item {
     width: 42vw;
+    height: 60vw;
+  }
+
+  .img-container {
+    height: 40vw
+  }
+
+  .content-container {
+    font-size: 2vw;
   }
 }
 
 @media screen and (max-width: 540px) {
   .post-item {
     width: 80vw;
+    height: 110vw;
+  }
+
+  .img-container {
+    height: 78vw
   }
 
   .nav-arrow-container {
     width: auto;
     margin: 0px, 10px;
   }
+
+  .content-container {
+    font-size: 3vw;
+  }
 }
 
 nav {
   overflow: hidden;
   background-color: #333;
+  z-index: 5;
 }
 
 nav a {
@@ -137,4 +168,15 @@ nav a {
 nav a:hover {
   background-color: #555;
   color: white;
+}
+
+.sticky {
+  position: fixed;
+  top: 0;
+  width: 100%;
+}
+
+/* Add some top padding to the page content to prevent sudden quick movement (as the navigation bar gets a new position at the top of the page (position:fixed and top:0) */
+.sticky + .content {
+  padding-top: 60px;
 }

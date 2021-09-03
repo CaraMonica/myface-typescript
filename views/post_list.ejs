@@ -2,40 +2,47 @@
   <%- include('_head') -%> <%- include('_header') -%> <%- include('post_list_script') -%>
   <body>
     <div class="nav-arrow-container">
-    <%= this.user %> <%if (previous) { %>
-    <a href="<%= previous %>"><i class="fas fa-arrow-left"></i></a>
-    <% } %> <%if (next) { %>
-    <a href="<%= next %>"><i class="fas fa-arrow-right"></i></a>
-    <% } %>
+      <%= this.user %> <%if (previous) { %>
+      <a href="<%= previous %>"><i class="fas fa-arrow-left"></i></a>
+      <% } %> <%if (next) { %>
+      <a href="<%= next %>"><i class="fas fa-arrow-right"></i></a>
+      <% } %>
     </div>
     <h1>Posts</h1>
     <ul class="flex-container">
       <% results.forEach(function(post) {%>
       <li class="post-item">
-        <img class="post-image" src="<%= post.imageUrl %>" alt="picture" />
-        <div class="post-info post-creator"><%= post.postedBy.name %></div>
-        <div class="post-info post-date"><%= post.createdAt%></div>
-        <div class="post-message"><%= post.message %></div>
-        <div class="btn-group">
-          <div>
-            <button
-              id="<%= post.id %>-like-button"
-              class="<%= post.isLikedByCurrentUser ? 'like liked' : 'like' %>"
-              onclick="onLikeClick(<%= post.id %>)"
-            >
-              <i class="far fa-thumbs-up" id="<%= post.id %>-thumbs-up"></i>
-            </button>
-            <div class="interaction-value" id="<%= post.id %>-numLikes"><%= post.likedBy.length %></div>
-          </div>
-          <div>
-            <button
-              id="<%= post.id %>-dislike-button"
-              class="<%= post.isDislikedByCurrentUser ? 'dislike disliked' : 'dislike' %>"
-              onclick="onDislikeClick(<%= post.id %>)"
-            >
-              <i class="far fa-thumbs-down" id="<%= post.id %>-thumbs-down"></i>
-            </button>
-            <div class="interaction-value" id="<%= post.id %>-numDislikes"><%= post.dislikedBy.length %></div>
+        <div class="img-container">
+          <img class="post-image" src="<%= post.imageUrl %>" alt="picture" />
+        </div>
+        <div class="content-container">
+          <div class="post-message"><%= post.message %></div>
+          <br>
+          <div class="post-info post-creator"><%= post.postedBy.name %></div>
+          <div class="post-info post-date"><%= post.createdAt%></div>
+          <div class="btn-group">
+            <div>
+              <button
+                id="<%= post.id %>-like-button"
+                class="<%= post.isLikedByCurrentUser ? 'like liked' : 'like' %>"
+                onclick="onLikeClick(<%= post.id %>)"
+              >
+                <i class="far fa-thumbs-up" id="<%= post.id %>-thumbs-up"></i>
+              </button>
+              <div class="interaction-value" id="<%= post.id %>-numLikes"><%= post.likedBy.length %></div>
+            </div>
+            <div>
+              <button
+                id="<%= post.id %>-dislike-button"
+                class="<%= post.isDislikedByCurrentUser ? 'dislike disliked' : 'dislike' %>"
+                onclick="onDislikeClick(<%= post.id %>)"
+              >
+                <i class="far fa-thumbs-down" id="<%= post.id %>-thumbs-down"></i>
+              </button>
+              <div class="interaction-value" id="<%= post.id %>-numDislikes">
+                <%= post.dislikedBy.length %>
+              </div>
+            </div>
           </div>
         </div>
       </li>
